@@ -82,7 +82,7 @@ public class App {
         }
         ExecutorService executor = Executors.newFixedThreadPool(4);
         //Run the Analysis
-        for (int i = 1; i <= 20; i++) {
+        for (int i = 25546; i <= queue.size(); i++) {
             ProteinWorkerThread worker = new ProteinWorkerThread(queue.get(i));
             worker.run();
             System.out.println("I count: "+i);
@@ -194,7 +194,7 @@ public class App {
     }
 
     public static void main(String args[]) throws IOException, StructureException, ClassNotFoundException {
-        String pdbLocation = "D:\\pdb";
+        String pdbLocation = "/Users/zaidaziz/PDB";
         AtomCache cache = new AtomCache();
         cache.setPath(pdbLocation);
         StructureIO.setAtomCache(cache);

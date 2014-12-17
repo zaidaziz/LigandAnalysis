@@ -20,7 +20,7 @@ public class MysqlDBService {
     // setup connection values to the database
 
     public static  String DB_DRIVER="com.mysql.jdbc.Driver" ;
-    public static String URL="jdbc:mysql://localhost:3306/ligand" ;
+    public static String URL="jdbc:mysql://localhost:8889/ligand" ;
 
     public static String USERNAME="root" ;
     public static String PASSWORD="root" ;

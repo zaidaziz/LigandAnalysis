@@ -75,12 +75,12 @@ public class ProteinWorkerThread implements Runnable {
                                             System.out.println(SQLStatement);
                                             MysqlDBService.UpdateDB(SQLStatement);
                                         } catch (SQLException ex) {
+                                            System.out.println(ex.getMessage());
                                             Logger.getLogger(ProteinWorkerThread.class.getName()).log(Level.SEVERE, null, ex);
                                         } catch (InterruptedException ex) {
+                                            System.out.println(ex.getMessage());
                                             Logger.getLogger(ProteinWorkerThread.class.getName()).log(Level.SEVERE, null, ex);
                                         }
-                                        //App.LgLigandResults.add(lg);
-                                        System.out.println(App.LgLigandResults.size());
                                     }
                                 }
                             }
@@ -98,7 +98,7 @@ public class ProteinWorkerThread implements Runnable {
     }
 
     public Structure getStructure(String ProteinID) throws IOException, StructureException {
-        String pdbLocation = "D:\\pdb";
+        String pdbLocation = "/Users/zaidaziz/PDB";
         AtomCache cache = new AtomCache();
         cache.setPath(pdbLocation);
         StructureIO.setAtomCache(cache);
