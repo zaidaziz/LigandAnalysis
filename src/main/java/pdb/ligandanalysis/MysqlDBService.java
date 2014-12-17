@@ -102,8 +102,6 @@ public class MysqlDBService {
      * @return
      */
     public static ResultSet getResultSet(String query) throws SQLException, InterruptedException {
-        String [] res=new String[2];
-        Hashtable<String,String> hrs=new Hashtable<String, String>();
         //Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;

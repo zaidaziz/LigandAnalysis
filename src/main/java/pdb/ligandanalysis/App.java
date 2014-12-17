@@ -199,8 +199,9 @@ public class App {
         cache.setPath(pdbLocation);
         StructureIO.setAtomCache(cache);
         //Generatre the HEM Statistics
-        HEMStatic();
+        //HEMStatic();
         //HEMStaticReader();
+        AminoAcidStatisitc.AminoAcidStatisitc("HIS");
     }
 
     public static Structure getStructure(String ProteinID) throws IOException, StructureException {
