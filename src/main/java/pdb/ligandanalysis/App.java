@@ -201,7 +201,7 @@ public class App {
         //Generatre the HEM Statistics
         //HEMStatic();
         //HEMStaticReader();
-        AminoAcidStatisitc.AminoAcidStatisitc("HIS");
+        AminoAcidStatisitc.AtomnStatisitc("HIS");
     }
 
     public static Structure getStructure(String ProteinID) throws IOException, StructureException {

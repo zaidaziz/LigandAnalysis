@@ -7,15 +7,20 @@ package pdb.ligandanalysis;
 
 import java.sql.ResultSet;
 import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.Set;
 
 public class AminoAcidStatisitc {
 
-    public static void AminoAcidStatisitc(String AminoAcid) {
+    public static void AtomnStatisitc(String AminoAcid) {
 
         try {
             Integer counter = 0;
+            //Hashtable to count the atom
             Hashtable<String, Integer> results = new Hashtable<>();
+            //Hashtable to save all the distances of each atom.
+            Hashtable<String, LinkedList<Float>> distances = new Hashtable<>();
+            
             //Open connection to database;
             MysqlDBService.LoadConnection();
             String SQL="select * from liganddata where ResidueName='" + AminoAcid + "'";
@@ -24,12 +29,15 @@ public class AminoAcidStatisitc {
                 counter++;
                 String  key=rs.getString("ResidueBindingAtom");
                 Integer count = results.get(key);
+                LinkedList<Float> distance=distances.get(key);
                 if(count==null){
                     count=0;
                 }else{
                 count++;    
                 }
+                distance.add(Float.valueOf(rs.getString("Distance")));
                 results.put(key, count);
+                distances.put(key, distance);
             }
             Set<String> keys = results.keySet();
             for (String key : keys) {
