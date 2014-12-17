@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Set;
+import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 public class AminoAcidStatisitc {
 
@@ -32,10 +33,12 @@ public class AminoAcidStatisitc {
                 LinkedList<Float> distance=distances.get(key);
                 if(count==null){
                     count=0;
+                    distance=new LinkedList<>();
                 }else{
                 count++;    
                 }
-                distance.add(Float.valueOf(rs.getString("Distance")));
+                String mydis=rs.getString("Distance");
+                distance.add(Float.valueOf(mydis));
                 results.put(key, count);
                 distances.put(key, distance);
             }
@@ -43,11 +46,29 @@ public class AminoAcidStatisitc {
             for (String key : keys) {
                 Integer aminocount=results.get(key);
                 Float percent=((aminocount.floatValue()*100)/counter.floatValue());
-                System.out.println("Atom: "+key.toString()+"   Count:"+aminocount.toString()+"     Percent:"+percent);
+                double averageDistance=DistanceAverage(distances.get(key));
+                double stdDistance=DistanceStd(distances.get(key));
+                System.out.println("Atom: "+key.toString()+"   Count:"+aminocount.toString()+"     Percent:"+percent+"      Distance:"+averageDistance+"        STD:"+stdDistance);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
+    }
+    public static double DistanceStd(LinkedList<Float> distances){
+        SummaryStatistics stats = new SummaryStatistics();
+        for (int i=0;i<distances.size();i++){
+            stats.addValue(distances.get(i));
+        }
+        return stats.getStandardDeviation();
+        
+    }
+    public static double DistanceAverage(LinkedList<Float> distances){
+        SummaryStatistics stats = new SummaryStatistics();
+        for (int i=0;i<distances.size();i++){
+            stats.addValue(distances.get(i));
+        }
+        return stats.getMean();
+        
     }
 }

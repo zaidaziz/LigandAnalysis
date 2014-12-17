@@ -201,8 +201,15 @@ public class App {
         //Generatre the HEM Statistics
         //HEMStatic();
         //HEMStaticReader();
-        AminoAcidStatisitc.AtomnStatisitc("HIS");
-    }
+        String aminos="CYS,TRP,TYR,MET,GLY,VAL,THR,ALA,ILE,SER,LYS,ASN,PRO,GLN,GLU,ASP";
+        String[] amino=aminos.split(",");
+        for(String temp:amino){
+            System.out.println(temp);
+        AminoAcidStatisitc.AtomnStatisitc(temp);
+            System.out.println("");
+            System.out.println("");
+        }
+        }
 
     public static Structure getStructure(String ProteinID) throws IOException, StructureException {
         Structure structure = StructureIO.getStructure(ProteinID);
